@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+
+{{block.super}}
+{%block content%}
+<div style="margin-top: 100px;">
+  <div class="container-fluid">
+
+    <div >
+      {% if projects %}
+        <h4 style="text-align: center;" class="mb-4">Welcome to awwards {{ user.username|capfirst }}</h4>
+        <h5>The following are various projects that have been posted</h5>
+      {% else %}
+        <h4>No projects to show at the moment. You can post a project though.</h4>
+      {% endif %}
+    </div>
+    <div class="mt-4">
+      <div class="row">
+        {%for project in projects%}
+        <div class="col-md-4 mb-5">
+          <div class="card content">
+            <div class="image">
+              <a class="img" href="/project/{{ project.id }}">
+                <img style="width:500px; height: 300px;" class="img-fluid" src="{{ project.image.url }}" alt=""></a>
+            </div>
+            <div >
+              <i class="fas fa-pastafarianism"></i>
+              <p class="ml-4 mt-1 text-muted">{{ project.title }} by {{ project.user|capfirst }}</p>
+              <div class="card-footer">
+                <i class="text-secondary">Posted on {{ project.date_posted|date:"M d, Y" }}</i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {%endfor%}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
