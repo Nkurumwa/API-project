@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{{block.super}}
+{%block content%}
+<div style="margin-top: 100px;">
+    <div class="container-fluid">
+        <div class="col-md-6">
+            {%if projects%}
+            <h3>Found {{ projects|length }} Project(s)</h3>
+            {%else%}
+            <h3>Found {{ projects|length }} Related results</h3>
+            {%endif%}
+        </div>
+        <div class="row">
+            {%for project in projects%}
+            <div class="col-md-4">
+                <div class="card content">
+                    <div class="image">
+                        <a class="img" href="/project/{{project.id}}"> <img class="img-fluid"
+                                style="width:500px; height: 300px;" src="{{project.image.url}}" alt=""></a>
+                    </div>
+                    <p class="ml-4 mt-1 text-muted">{{ project.title }} by {{ project.user|capfirst }}</p>
+                    <div class="card-footer">
+                        <i class="text-secondary">Posted on {{ project.date_posted }}</i>
+                    </div>
+                </div>
+                <br>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{%endblock%}
