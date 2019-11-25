@@ -1,0 +1,89 @@
+{%extends "registration/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="mb-5">
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md  bg-steel fixed-top navbar-dark"
+            style="background-color: white; height: 60px;">
+            <div class="container-fluid">
+                <div>
+                    <button style="background-color: rgb(104, 104, 241)" class="navbar-toggler" type="button"
+                        data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">
+                            <a class="navbar-brand mt-1" href="{% url 'home' %}"><img
+                                    src="https://png.icons8.com/linen/50/000000/rating.png"
+                                    style="height:40px;width:36px;">
+                            </a>
+                            <a class="navbar-brand mt-2" style="color: rgb(65, 64, 64);" href="{% url 'home' %}">AWWARDS</a>
+
+                            <a style="margin-left: 200px;">
+                                <div class="col-md-12 nav-search mt-2">
+                                    <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search' %}">
+                                        <input style="height: 32px; text-align: center;" class="form-control "
+                                            name="search" type="search" placeholder="Search" aria-label="Search">
+                                    </form>
+                                </div>
+                            </a>
+                            <a class="navbar-brand mt-2" style="color: rgb(65, 64, 64);" href="{% url 'post_project' %}">Post A Project</a>
+                        </div>
+
+                        <!-- Navbar Right Side -->
+                        <div style="margin-bottom: 30px; margin-left: 200px;" class="mt-5">
+                            <a href="{% url 'profile' %}">
+                                <i class="ml-5 fa fa-user" style="font-size:28px; color: rgb(65, 64, 64);"></i>
+                            </a>
+                            <div class="ml-1 dropdown">
+                                <p class="dropbtn">{{ user.username|capfirst }}</p>
+                                <div class="dropdown-content">
+                                    <a href="{% url 'profile' %}">Profile</a>
+                                    <a href="{% url 'logout' %}">Logout</a>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>
+
+{% else %}
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-3">
+            <div class="card">
+                <div class="logincont">
+                    <div class="loginform">
+                        <div class="panel-body">
+                            <div class="card-header">
+                                <h3>Welcome to Awwards Site</h3>
+                            </div>
+                            <form class="ml-4 mr-4 mt-3">
+                                <div class="form-group">
+                                    <a href="{% url 'login' %}" class="btn btn-primary btn-md btn-block">Login</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <p class="ml-5 mt-3">Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign
+                        Up</a>
+                </p>
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
+
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
