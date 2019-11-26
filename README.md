@@ -22,7 +22,6 @@
 |User sign up| Login | Post a project|
 |-------------|-------|---------------|
 |User post a project| Review it | Submit|
-|--------------------|-----------|-------|
 |Login | Rate a project| Submit results|
 
 ## Known bugs
